@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qaizn - AI-Powered Competitive Advantage</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8fafc; 
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+        }
+        /* Modal Styling */
+        #modal {
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+        #modal-content {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        /* Unique Background Color */
+        .unique-bg {
+            background-color: #1a202c; /* Dark blue-gray */
+        }
+        /* Shared Background Color */
+        .shared-bg {
+            background-color: #2d3748; /* Slightly lighter dark blue-gray */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Modern Menu -->
+    <header class="shared-bg shadow-md">
+        <div class="container mx-auto px-8 py-4 flex justify-between items-center">
+            <div class="text-white text-2xl font-bold">Qaizn</div>
+            <nav class="hidden md:flex space-x-6 text-white">
+                <a href="#" class="hover:text-yellow-100 transition duration-300">Home</a>
+                <a href="#" class="hover:text-yellow-100 transition duration-300">Solutions</a>
+                <a href="#" class="hover:text-yellow-100 transition duration-300">Industries</a>
+                <a href="#" class="hover:text-yellow-100 transition duration-300">About</a>
+                <a href="#" class="hover:text-yellow-100 transition duration-300">Contact</a>
+            </nav>
+            <div class="md:hidden flex items-center">
+                <button id="menu-toggle" class="text-white focus:outline-none">
+                    <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="menu" class="hidden md:hidden shared-bg px-8 py-4 space-y-4 text-white">
+            <a href="#" class="block hover:text-yellow-100 transition duration-300">Home</a>
+            <a href="#" class="block hover:text-yellow-100 transition duration-300">Solutions</a>
+            <a href="#" class="block hover:text-yellow-100 transition duration-300">Industries</a>
+            <a href="#" class="block hover:text-yellow-100 transition duration-300">About</a>
+            <a href="#" class="block hover:text-yellow-100 transition duration-300">Contact</a>
+        </div>
+    </header>
+
+    <!-- Hero Section (Combined with Header) -->
+    <section class="px-8 py-16 relative shared-bg">
+        <div class="container mx-auto flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-8 md:mb-0">
+                <h1 class="text-5xl font-bold leading-tight mb-6 text-white">AI-Powered Competitive Advantage</h1>
+                <p class="text-gray-300 mb-8 text-lg">Transform your business with AI solutions that go beyond strategy. We deliver real-world implementation for tangible results.</p>
+                <div class="flex space-x-4">
+                    <button class="bg-yellow-200 hover:bg-yellow-200 text-gray-600 px-6 py-3 rounded-md font-medium shadow-md transition duration-300" onclick="openModal()">Get Started</button>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <img src="./img/charles-forerunner-3fPXt37X6UQ-unsplash.jpg" alt="AI Implementation" class="w-full rounded-lg shadow-md"> 
+            </div>
+        </div>
+    </section>
+
+    <!-- Strategy to Implementation Section -->
+    <section class="px-8 py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 text-shared-bg">From Strategy to Implementation</h2>
+            <p class="text-gray-600 mb-12 text-lg">Many companies talk about AI strategy, but we make it happen. Our team of experts will guide you from initial concept to real-world deployment, ensuring your AI initiatives deliver measurable value.</p>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section class="px-8 py-16 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 text-shared-bg">Key Benefits of AI Implementation</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <img src="https://via.placeholder.com/80x80" alt="Icon 1" class="mb-4">
+                    <h3 class="text-xl font-bold mb-4 text-shared-bg">Enhanced Efficiency</h3>
+                    <p class="text-gray-600 text-center">Automate tasks, optimize processes, and free up your team to focus on strategic initiatives.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <img src="https://via.placeholder.com/80x80" alt="Icon 2" class="mb-4">
+                    <h3 class="text-xl font-bold mb-4 text-shared-bg">Data-Driven Insights</h3>
+                    <p class="text-gray-600 text-center">Unlock the power of your data with AI-powered analytics to identify trends, predict outcomes, and make informed decisions.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col items-center">
+                    <img src="https://via.placeholder.com/80x80" alt="Icon 3" class="mb-4">
+                    <h3 class="text-xl font-bold mb-4 text-shared-bg">Competitive Edge</h3>
+                    <p class="text-gray-600 text-center">Gain a significant advantage by leveraging AI to personalize customer experiences, optimize pricing, and streamline operations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="px-8 py-16 bg-white">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8 text-shared-bg">AI Solutions for Every Industry</h2>
+            <p class="text-gray-600 mb-12 text-lg">We have experience implementing AI solutions across a wide range of industries, including:</p>
+            <div class="flex flex-wrap justify-center space-x-4">
+                <button class="bg-shared-bg hover:bg-green-600 text-white px-6 py-3 rounded-md font-medium shadow-md transition duration-300">Healthcare</button>
+                <button class="bg-shared-bg hover:bg-green-600 text-white px-6 py-3 rounded-md font-medium shadow-md transition duration-300">Finance</button>
+                <button class="bg-shared-bg hover:bg-green-600 text-white px-6 py-3 rounded-md font-medium shadow-md transition duration-300">Retail</button>
+                <button class="bg-shared-bg hover:bg-green-600 text-white px-6 py-3 rounded-md font-medium shadow-md transition duration-300">Manufacturing</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="px-8 py-16 bg-gray-100">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 text-shared-bg">Ready to Unleash the Power of AI?</h2>
+            <p class="text-gray-600 mb-6 text-lg">Contact us today to discuss how we can help you implement AI solutions to achieve your business goals.</p>
+            <button class="bg-shared-bg hover:bg-green-600 text-white px-8 py-3 rounded-md font-medium shadow-md transition duration-300" onclick="openModal()">Get Started Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-8 py-6 unique-bg text-white">
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div>
+                <img src="https://via.placeholder.com/150x50" alt="Qaizn Logo" class="h-6 mb-2"> 
+                <p class="text-gray-300 text-xs">Empowering businesses to thrive in the age of AI.</p>
+            </div>
+            <div>
+                <h5 class="font-bold mb-2 text-white text-sm">Solutions</h5>
+                <ul class="space-y-1 text-gray-300 text-xs">
+                    <li>AI Strategy</li>
+                    <li>AI Implementation</li>
+                    <li>Data Analytics</li>
+                    <li>Machine Learning</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-2 text-white text-sm">Company</h5>
+                <ul class="space-y-1 text-gray-300 text-xs">
+                    <li>About Us</li>
+                    <li>Contact</li>
+                    <li>Case Studies</li>
+                </ul>
+            </div>
+            <div>
+                <h5 class="font-bold mb-2 text-white text-sm">Follow Us</h5>
+                <ul class="space-y-1 text-gray-300 text-xs">
+                    <li>Twitter</li>
+                    <li>LinkedIn</li>
+                </ul>
+            </div>
+        </div>
+        <div class="text-center mt-4 text-gray-400 text-xs">
+            © 2023 Qaizn. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="hidden fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">​</span>
+
+            <div id="modal-content" class="inline-block align-middle bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:px-6 sm:py-6">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                Get Started with Qaizn
+                            </h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500">
+                                    Please fill out the form below to get in touch with us.
+                                </p>
+                                <form class="mt-4">
+                                    <div class="mb-4">
+                                        <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Your Name</label>
+                                        <input type="text" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter your name">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Your Email</label>
+                                        <input type="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter your email">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Your Message</label>
+                                        <textarea id="message" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter your message"></textarea>
+                                    </div>
+                                    <button type="submit" class="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                        Submit
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm" onclick="closeModal()">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('hidden');
+        });
+    </script>
+
+    
+    <!-- Flowise Chat -->
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.init({
+            chatflowid: "3476eaae-6998-4994-aef6-289b2bbad7ea",
+            apiHost: "https://flowise.multiplai.org",
+            chatflowConfig: {
+                // topK: 2
+            },
+            theme: {
+                button: {
+                    backgroundColor: "#3B81F6",
+                    right: 20,
+                    bottom: 20,
+                    size: 48, // small | medium | large | number
+                    dragAndDrop: true,
+                    iconColor: "white",
+                    customIconSrc: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg",
+                },
+                tooltip: {
+                    showTooltip: false,
+                    tooltipMessage: 'Hi There 👋!',
+                    tooltipBackgroundColor: 'black',
+                    tooltipTextColor: 'white',
+                    tooltipFontSize: 16,
+                },
+                chatWindow: {
+                    showTitle: true,
+                    title: 'Ley Sociedades Bot',
+                    titleAvatarSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
+                    showAgentMessages: true,
+                    welcomeMessage: 'Hello! This is custom welcome message',
+                    errorMessage: 'This is a custom error message',
+                    backgroundColor: "#ffffff",
+                    height: 700,
+                    width: 400,
+                    fontSize: 16,
+                    poweredByTextColor: "#303235",
+                    botMessage: {
+                        backgroundColor: "#f7f8ff",
+                        textColor: "#303235",
+                        fontSize: 12,
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
+                    },
+                    userMessage: {
+                        backgroundColor: "#3B81F6",
+                        textColor: "#ffffff",
+                        fontSize: 12,
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+                    },
+                    textInput: {
+                        placeholder: 'Type your question',
+                        backgroundColor: '#ffffff',
+                        textColor: '#303235',
+                        sendButtonColor: '#3B81F6',
+                        maxChars: 50,
+                        maxCharsWarningMessage: 'You exceeded the characters limit. Please input less than 50 characters.',
+                        autoFocus: true, // If not used, autofocus is disabled on mobile and enabled on desktop. true enables it on both, false disables it on both.
+                        sendMessageSound: true,
+                        // sendSoundLocation: "send_message.mp3", // If this is not used, the default sound effect will be played if sendSoundMessage is true.
+                        receiveMessageSound: true,
+                        // receiveSoundLocation: "receive_message.mp3", // If this is not used, the default sound effect will be played if receiveSoundMessage is true. 
+                    },
+                    feedback: {
+                        color: '#303235',
+                    },
+                    footer: {
+                        textColor: '#303235',
+                        text: 'Powered by',
+                        company: 'J. Arias',
+                        companyLink: 'https://qaizn.com',
+                    }
+                }
+            }
+        })
+    </script>
+    
+
+</body>
+</html>
