@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Meta Tags -->
+    <title>qaizn - Soluciones de IA para PyMEs | Automatización y Mejora Continua</title>
+    <meta name="description" content="Transformamos PyMEs con inteligencia artificial estratégica. Automatiza procesos, optimiza tu ERP y CRM, y toma decisiones basadas en datos. Resultados medibles en 4-6 semanas.">
+    <meta name="keywords" content="inteligencia artificial, IA para PyMEs, automatización de procesos, análisis predictivo, ERP, CRM, mejora continua, Kaizen, transformación digital, consultoría IA">
+    <meta name="author" content="qaizn">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://qaizn.com">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://qaizn.com">
+    <meta property="og:title" content="qaizn - Soluciones de IA para PyMEs | Automatización y Mejora Continua">
+    <meta property="og:description" content="Transformamos PyMEs con inteligencia artificial estratégica. Automatiza procesos, optimiza tu ERP y CRM, y toma decisiones basadas en datos.">
+    <meta property="og:image" content="https://qaizn.com/og-image.jpg">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:site_name" content="qaizn">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://qaizn.com">
+    <meta name="twitter:title" content="qaizn - Soluciones de IA para PyMEs">
+    <meta name="twitter:description" content="Transformamos PyMEs con inteligencia artificial estratégica. Resultados medibles en 4-6 semanas.">
+    <meta name="twitter:image" content="https://qaizn.com/twitter-image.jpg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="qaizn-icon.svg">
+    <link rel="apple-touch-icon" href="qaizn-icon.svg">
+
+    <!-- Fonts -->
+    <!-- Using Helvetica system font -->
+
+    <!-- Schema.org structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "qaizn",
+      "url": "https://qaizn.com",
+      "logo": "https://qaizn.com/qaizn-logo.svg",
+      "description": "Consultora de inteligencia artificial especializada en transformación digital para PyMEs",
+      "foundingDate": "2024",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Sales",
+        "availableLanguage": ["Spanish", "English"]
+      },
+      "sameAs": [
+        "https://linkedin.com/company/qaizn",
+        "https://twitter.com/qaizn"
+      ],
+      "areaServed": {
+        "@type": "Place",
+        "name": "España"
+      },
+      "service": {
+        "@type": "Service",
+        "serviceType": "Consultoría de Inteligencia Artificial",
+        "description": "Automatización de procesos, análisis predictivo, optimización de ERP y CRM mediante IA"
+      }
+    }
+    </script>
+    <style>
+        :root {
+            --cream: #F5F1EB;
+            --black: #1A1A1A;
+            --coral: #D17A6F;
+            --coral-light: #E5A89D;
+            --beige: #E8DFD6;
+            --gray: #5A5A5A;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background: var(--cream);
+            overflow-x: hidden;
+            color: var(--black);
+        }
+
+        /* Logo */
+        .logo-container {
+            position: absolute;
+            top: 3rem;
+            right: 6rem;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-symbol {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--black);
+            letter-spacing: -0.02em;
+        }
+
+        .logo-text .ai-highlight {
+            color: var(--coral);
+        }
+
+        @media (max-width: 1024px) {
+            .logo-container {
+                top: 2rem;
+                right: 2rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .logo-container {
+                top: 1.5rem;
+                right: 1.5rem;
+            }
+
+            .logo-text {
+                font-size: 1.5rem;
+            }
+
+            .logo-symbol {
+                height: 36px;
+                width: auto;
+            }
+        }
+
+        .hero {
+            min-height: 100vh;
+            background: var(--cream);
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            padding: 4rem 6rem;
+            gap: 6rem;
+        }
+
+        .content {
+            max-width: 650px;
+        }
+
+        h1 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1;
+            color: var(--black);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .underline {
+            position: relative;
+            display: inline;
+        }
+
+        .underline::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0.1em;
+            width: 100%;
+            height: 0.08em;
+            background: var(--black);
+            animation: expandWidth 0.8s ease-out 0.5s backwards;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            line-height: 1.7;
+            color: var(--gray);
+            font-weight: 400;
+            max-width: 580px;
+            margin-bottom: 3rem;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            padding: 1rem 2rem;
+            border: 2px solid var(--black);
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+            border-radius: 3px;
+        }
+
+        .btn-primary {
+            background: var(--black);
+            color: var(--cream);
+        }
+
+        .btn-primary:hover {
+            background: var(--gray);
+            border-color: var(--gray);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--black);
+        }
+
+        .btn-secondary:hover {
+            background: var(--beige);
+        }
+
+        /* Illustration Side */
+        .illustration {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 1.2s ease-out 0.6s backwards;
+        }
+
+        .ai-visual {
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        /* SVG Animation */
+        .node {
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .node:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .node:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+
+        .node:nth-child(4) {
+            animation-delay: 0.9s;
+        }
+
+        .node:nth-child(5) {
+            animation-delay: 1.2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes expandWidth {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--beige);
+            padding: 3rem 6rem;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .stats {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 4rem;
+        }
+
+        .stat-item {
+            text-align: left;
+        }
+
+        .stat-number {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 3.5rem;
+            color: var(--black);
+            display: block;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        /* Challenge Section */
+        .challenge-section {
+            padding: 6rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 4rem;
+        }
+
+        .section-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .challenge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .challenge-card {
+            padding: 2rem;
+            background: var(--beige);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .challenge-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .challenge-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .challenge-title {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.4rem;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .challenge-description {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Solutions Section */
+        .solutions-section {
+            background: var(--black);
+            color: var(--cream);
+            padding: 6rem;
+        }
+
+        .solutions-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .solutions-section .section-title {
+            color: var(--cream);
+        }
+
+        .solutions-section .section-subtitle {
+            color: rgba(245, 241, 235, 0.7);
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .solution-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .solution-number {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 2.5rem;
+            color: var(--coral);
+            font-weight: 600;
+            line-height: 1;
+        }
+
+        .solution-content h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .solution-content p {
+            color: rgba(245, 241, 235, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Use Cases Section */
+        .usecases-section {
+            padding: 6rem;
+            background: var(--cream);
+        }
+
+        .usecases-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .usecase-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .usecase-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .usecase-tag {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--coral-light);
+            color: var(--black);
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 1.5rem;
+        }
+
+        .usecase-card h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.6rem;
+            color: var(--black);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .usecase-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .usecase-results {
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--beige);
+        }
+
+        .result-label {
+            font-size: 0.85rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-value {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.8rem;
+            color: var(--coral);
+            font-weight: 600;
+        }
+
+        /* Process Section */
+        .process-section {
+            padding: 6rem;
+            background: var(--beige);
+        }
+
+        .process-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .process-step {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--coral);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .step-content h3 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 1.8rem;
+            color: var(--black);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+
+        /* Final CTA Section */
+        .cta-section {
+            padding: 6rem;
+            background: var(--cream);
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            color: var(--black);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            line-height: 1.1;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3rem 2rem;
+                gap: 3rem;
+            }
+
+            .illustration {
+                order: -1;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            .stats-section {
+                padding: 2rem;
+            }
+
+            .stats {
+                gap: 2rem;
+            }
+
+            .challenge-section,
+            .solutions-section,
+            .usecases-section,
+            .process-section,
+            .cta-section {
+                padding: 3rem 2rem;
+            }
+
+            .solutions-grid {
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
+            }
+
+            .process-step {
+                grid-template-columns: 60px 1fr;
+                gap: 1.5rem;
+            }
+
+            .step-number {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero {
+                padding: 2rem 1.5rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .challenge-grid,
+            .usecase-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .solution-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Logo -->
+    <header class="logo-container">
+        <a href="#" class="logo" aria-label="qaizn - Inicio">
+            <img src="qaizn_logo.png" alt="qaizn logo" class="logo-symbol">
+        </a>
+    </header>
+
+    <main>
+    <section class="hero" aria-label="Sección principal">
+        <div class="content">
+            <h1>
+                Soluciones de IA que impulsan la <span class="underline">competitividad</span> empresarial
+            </h1>
+
+            <p class="subtitle">
+                Transformamos organizaciones con inteligencia artificial estratégica.
+                Desde la automatización inteligente hasta el análisis predictivo,
+                ayudamos a empresas a tomar decisiones más rápidas, precisas y rentables.
+            </p>
+
+            <div class="cta-group">
+                <a href="#contacto" class="btn btn-primary" aria-label="Comenzar ahora con qaizn">Comenzar ahora</a>
+                <a href="#casos" class="btn btn-secondary" aria-label="Ver casos de éxito de nuestros clientes">Casos de éxito</a>
+            </div>
+        </div>
+
+        <div class="illustration">
+            <svg class="ai-visual" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Red neuronal representando inteligencia artificial">
+                <!-- Central hub -->
+                <circle cx="200" cy="200" r="25" fill="#1A1A1A"/>
+
+                <!-- Network connections -->
+                <line x1="200" y1="200" x2="280" y2="120" stroke="#D17A6F" stroke-width="3"/>
+                <line x1="200" y1="200" x2="320" y2="200" stroke="#D17A6F" stroke-width="3"/>
+                <line x1="200" y1="200" x2="280" y2="280" stroke="#D17A6F" stroke-width="3"/>
+                <line x1="200" y1="200" x2="200" y2="320" stroke="#D17A6F" stroke-width="3"/>
+                <line x1="200" y1="200" x2="120" y2="280" stroke="#D17A6F" stroke-width="3"/>
+                <line x1="200" y1="200" x2="80" y2="200" stroke="#D17A6F" stroke-width="3"/>
+                <line x1="200" y1="200" x2="120" y2="120" stroke="#D17A6F" stroke-width="3"/>
+
+                <!-- Outer nodes -->
+                <circle class="node" cx="280" cy="120" r="20" fill="#E5A89D" stroke="#1A1A1A" stroke-width="2"/>
+                <circle class="node" cx="320" cy="200" r="20" fill="#E5A89D" stroke="#1A1A1A" stroke-width="2"/>
+                <circle class="node" cx="280" cy="280" r="20" fill="#E5A89D" stroke="#1A1A1A" stroke-width="2"/>
+                <circle class="node" cx="200" cy="320" r="20" fill="#E5A89D" stroke="#1A1A1A" stroke-width="2"/>
+                <circle class="node" cx="120" cy="280" r="20" fill="#E5A89D" stroke="#1A1A1A" stroke-width="2"/>
+                <circle class="node" cx="80" cy="200" r="20" fill="#E5A89D" stroke="#1A1A1A" stroke-width="2"/>
+                <circle class="node" cx="120" cy="120" r="20" fill="#E5A89D" stroke="#1A1A1A" stroke-width="2"/>
+
+                <!-- Decorative elements -->
+                <path d="M 100 50 Q 150 30, 200 50 T 300 50" stroke="#D17A6F" stroke-width="2" fill="none" opacity="0.3"/>
+                <path d="M 50 150 Q 30 200, 50 250 T 50 350" stroke="#D17A6F" stroke-width="2" fill="none" opacity="0.3"/>
+                <circle cx="350" cy="100" r="8" fill="#D17A6F" opacity="0.5"/>
+                <circle cx="50" cy="350" r="12" fill="#E8DFD6"/>
+                <circle cx="350" cy="320" r="6" fill="#D17A6F" opacity="0.4"/>
+            </svg>
+        </div>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">250%</span>
+                <span class="stat-label">Aumento promedio en ROI</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">150+</span>
+                <span class="stat-label">Empresas transformadas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">96%</span>
+                <span class="stat-label">Satisfacción del cliente</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges Section -->
+    <section class="challenge-section" aria-label="Desafíos empresariales">
+        <div class="section-header">
+            <h2 class="section-title">Los desafíos que enfrentan las PyMEs hoy</h2>
+            <p class="section-subtitle">
+                El tiempo y los recursos son limitados. Cada hora cuenta, y los procesos ineficientes
+                frenan el crecimiento de tu negocio.
+            </p>
+        </div>
+
+        <div class="challenge-grid">
+            <div class="challenge-card">
+                <svg class="challenge-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="28" stroke="#D17A6F" stroke-width="2.5"/>
+                    <circle cx="30" cy="30" r="3" fill="#D17A6F"/>
+                    <line x1="30" y1="30" x2="30" y2="12" stroke="#D17A6F" stroke-width="2.5" stroke-linecap="round"/>
+                    <line x1="30" y1="30" x2="42" y2="30" stroke="#D17A6F" stroke-width="2.5" stroke-linecap="round"/>
+                </svg>
+                <h3 class="challenge-title">Tareas repetitivas que consumen tiempo</h3>
+                <p class="challenge-description">
+                    Tu equipo dedica horas a procesos manuales: entrada de datos,
+                    generación de informes, gestión de inventarios. Tiempo que podrían
+                    invertir en actividades de mayor valor.
+                </p>
+            </div>
+
+            <div class="challenge-card">
+                <svg class="challenge-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="35" width="10" height="18" fill="#E5A89D" stroke="#D17A6F" stroke-width="2"/>
+                    <rect x="21" y="25" width="10" height="28" fill="#E5A89D" stroke="#D17A6F" stroke-width="2"/>
+                    <rect x="34" y="15" width="10" height="38" fill="#E5A89D" stroke="#D17A6F" stroke-width="2"/>
+                    <line x1="6" y1="54" x2="54" y2="54" stroke="#D17A6F" stroke-width="2" stroke-linecap="round"/>
+                    <polyline points="10,20 20,15 30,8 40,5" stroke="#D17A6F" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                </svg>
+                <h3 class="challenge-title">Datos desaprovechados</h3>
+                <p class="challenge-description">
+                    Tu ERP y CRM están llenos de información valiosa, pero tomar
+                    decisiones requiere horas de análisis manual. Los insights que
+                    necesitas están ahí, pero no son accesibles.
+                </p>
+            </div>
+
+            <div class="challenge-card">
+                <svg class="challenge-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M30 5 L35 10 L50 8 L48 23 L53 28 L48 33 L50 48 L35 46 L30 51 L25 46 L10 48 L12 33 L7 28 L12 23 L10 8 L25 10 Z" fill="#E5A89D" stroke="#D17A6F" stroke-width="2"/>
+                    <text x="30" y="36" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" text-anchor="middle" fill="#1A1A1A">€</text>
+                </svg>
+                <h3 class="challenge-title">Costes operativos elevados</h3>
+                <p class="challenge-description">
+                    Los procesos ineficientes aumentan costes: errores humanos,
+                    duplicación de esfuerzos, y oportunidades perdidas que impactan
+                    directamente en tu rentabilidad.
+                </p>
+            </div>
+
+            <div class="challenge-card">
+                <svg class="challenge-icon" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="30" cy="30" r="26" stroke="#D17A6F" stroke-width="2.5"/>
+                    <circle cx="30" cy="30" r="18" stroke="#D17A6F" stroke-width="2"/>
+                    <circle cx="30" cy="30" r="10" stroke="#D17A6F" stroke-width="2"/>
+                    <circle cx="30" cy="30" r="3" fill="#D17A6F"/>
+                    <line x1="30" y1="4" x2="30" y2="10" stroke="#D17A6F" stroke-width="2"/>
+                    <line x1="30" y1="50" x2="30" y2="56" stroke="#D17A6F" stroke-width="2"/>
+                    <line x1="4" y1="30" x2="10" y2="30" stroke="#D17A6F" stroke-width="2"/>
+                    <line x1="50" y1="30" x2="56" y2="30" stroke="#D17A6F" stroke-width="2"/>
+                </svg>
+                <h3 class="challenge-title">Decisiones basadas en intuición</h3>
+                <p class="challenge-description">
+                    Sin análisis predictivo, las decisiones se toman con información
+                    incompleta o desactualizada, aumentando el riesgo y reduciendo
+                    la competitividad.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section class="solutions-section" aria-label="Soluciones de IA">
+        <div class="solutions-container">
+            <div class="section-header">
+                <h2 class="section-title">Cómo la IA transforma tu operación</h2>
+                <p class="section-subtitle">
+                    Soluciones prácticas que generan resultados medibles desde el primer mes.
+                </p>
+            </div>
+
+            <div class="solutions-grid">
+                <div class="solution-item">
+                    <div class="solution-number">01</div>
+                    <div class="solution-content">
+                        <h3>Automatización inteligente</h3>
+                        <p>
+                            Elimina tareas repetitivas con automatización que aprende y mejora.
+                            Desde procesamiento de documentos hasta gestión de inventarios,
+                            liberamos hasta el 60% del tiempo de tu equipo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="solution-item">
+                    <div class="solution-number">02</div>
+                    <div class="solution-content">
+                        <h3>Análisis predictivo y dashboards inteligentes</h3>
+                        <p>
+                            Conectamos tus sistemas ERP y CRM para generar insights automáticos.
+                            Predice demanda, identifica patrones de compra, y detecta oportunidades
+                            antes que tu competencia.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="solution-item">
+                    <div class="solution-number">03</div>
+                    <div class="solution-content">
+                        <h3>Optimización de procesos</h3>
+                        <p>
+                            Analizamos tus flujos de trabajo para identificar cuellos de botella
+                            y oportunidades de mejora. IA que monitoriza y optimiza operaciones
+                            en tiempo real.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="solution-item">
+                    <div class="solution-number">04</div>
+                    <div class="solution-content">
+                        <h3>Asistentes inteligentes para tu equipo</h3>
+                        <p>
+                            Chatbots y asistentes de IA que responden consultas de clientes,
+                            ayudan a ventas con recomendaciones personalizadas, y dan soporte
+                            24/7 sin aumentar tu plantilla.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases Section -->
+    <section class="usecases-section" aria-label="Casos de éxito">
+        <div class="usecases-container">
+            <div class="section-header">
+                <h2 class="section-title">Resultados reales en empresas como la tuya</h2>
+                <p class="section-subtitle">
+                    Casos de éxito de PyMEs que ya están compitiendo con IA.
+                </p>
+            </div>
+
+            <div class="usecase-cards">
+                <div class="usecase-card">
+                    <span class="usecase-tag">Atención al Cliente</span>
+                    <h3>Bot de atención y presupuestos automáticos</h3>
+                    <p>
+                        Empresa de servicios implementó un asistente de IA que atiende consultas,
+                        cualifica leads y genera presupuestos personalizados automáticamente
+                        24/7, liberando al equipo comercial para cerrar ventas.
+                    </p>
+                    <div class="usecase-results">
+                        <div class="result-label">Reducción tiempo de respuesta</div>
+                        <div class="result-value">-85%</div>
+                    </div>
+                </div>
+
+                <div class="usecase-card">
+                    <span class="usecase-tag">Servicios B2B</span>
+                    <h3>Automatización de procesos administrativos</h3>
+                    <p>
+                        Consultora de 45 empleados eliminó tareas manuales en facturación,
+                        reportes y seguimiento de proyectos. Su equipo ahora se enfoca en
+                        clientes, no en papeleo.
+                    </p>
+                    <div class="usecase-results">
+                        <div class="result-label">Ahorro de horas mensuales</div>
+                        <div class="result-value">340h</div>
+                    </div>
+                </div>
+
+                <div class="usecase-card">
+                    <span class="usecase-tag">E-commerce</span>
+                    <h3>Análisis de comportamiento de clientes</h3>
+                    <p>
+                        Tienda online integró IA con su CRM para segmentar clientes,
+                        personalizar ofertas y predecir abandono. Las campañas ahora
+                        son 4x más efectivas.
+                    </p>
+                    <div class="usecase-results">
+                        <div class="result-label">Aumento en conversión</div>
+                        <div class="result-value">+127%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section" aria-label="Proceso de trabajo">
+        <div class="process-container">
+            <div class="section-header">
+                <h2 class="section-title">Cómo trabajamos contigo</h2>
+                <p class="section-subtitle">
+                    Un proceso transparente y sin riesgos. Resultados en 4-6 semanas.
+                </p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Diagnóstico inicial</h3>
+                        <p>
+                            Analizamos tus procesos actuales, sistemas existentes (ERP, CRM)
+                            y objetivos de negocio. Identificamos las oportunidades de mayor
+                            impacto con menor esfuerzo.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Proyecto piloto</h3>
+                        <p>
+                            Implementamos una solución específica en un área de tu negocio.
+                            Esto nos permite demostrar valor rápidamente y ajustar la
+                            estrategia según resultados reales.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Escalado e integración</h3>
+                        <p>
+                            Una vez validado el piloto, expandimos la solución a otras áreas.
+                            Nos aseguramos de que todo se integre perfectamente con tus
+                            sistemas existentes.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Optimización continua</h3>
+                        <p>
+                            La IA mejora con el tiempo. Monitorizamos rendimiento,
+                            entrenamos a tu equipo, y refinamos los modelos para maximizar
+                            el ROI a largo plazo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="cta-section" aria-label="Llamada a la acción">
+        <div class="cta-container">
+            <h2>Descubre cuánto puede crecer tu negocio con IA</h2>
+            <p>
+                Agenda una sesión estratégica gratuita. Analizaremos tu operación y
+                te mostraremos oportunidades concretas de automatización y optimización.
+            </p>
+            <div class="cta-group" style="justify-content: center;">
+                <a href="#contacto" class="btn btn-primary" aria-label="Agendar sesión estratégica gratuita">Agendar sesión gratuita</a>
+                <a href="#casos" class="btn btn-secondary" aria-label="Descargar caso de estudio de éxito">Descargar caso de estudio</a>
+            </div>
+        </div>
+    </section>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background: var(--black); color: var(--cream); padding: 2rem; text-align: center;">
+        <p style="font-size: 0.9rem; opacity: 0.8;">&copy; 2024 qaizn. Inteligencia artificial para la mejora continua.</p>
+    </footer>
+</body>
+</html>
