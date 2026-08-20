@@ -78,3 +78,43 @@ Y abre `http://localhost:8000/`.
   `index_bundled_backup.html`. No están enlazados desde ningún sitio, pero
   cualquiera que sepa el nombre puede abrirlos. Si eso molesta, hay que
   borrarlos del repo.
+
+## Formulario de contacto
+
+El formulario de `index.html` envía por **Web3Forms**: un endpoint que
+reenvía cada envío a tu email. No hay backend ni base de datos, que es lo que
+permite que el sitio siga siendo estático.
+
+### Falta un paso para activarlo
+
+1. Entra en https://web3forms.com, escribe `hola@qaizn.com` y pulsa
+   "Create Access Key". Te llega la clave por email. No hay que crear cuenta.
+2. En `index.html`, busca esta línea y pega la clave:
+
+   ```js
+   const ACCESS_KEY = 'PEGA_AQUI_TU_ACCESS_KEY';
+   ```
+
+3. `git commit` + `git push`. EasyPanel redespliega y el formulario funciona.
+
+Mientras la clave sea el placeholder, el envío falla de forma controlada:
+el visitante ve "No hemos podido enviarlo" con un enlace a `hola@qaizn.com`.
+Nadie se queda sin poder contactar.
+
+### Qué hace el formulario
+
+- Valida en cliente antes de enviar (los cuatro campos son obligatorios,
+  el email tiene que tener forma de email) y enfoca el primer campo inválido.
+- Envía en segundo plano: sin recarga de página. Estados "Enviando…",
+  confirmación, o error con el email de respaldo.
+- Lleva un campo trampa (`botcheck`) oculto por CSS. Los bots lo rellenan,
+  las personas no lo ven; Web3Forms descarta esos envíos.
+- Los campos que llegan al email: nombre, email, empresa, area.
+
+### Cambiar de proveedor
+
+Todo lo específico de Web3Forms está en el bloque `// ── Formulario de
+contacto` al final de `index.html`: la constante `ACCESS_KEY`, la URL del
+`fetch` y los tres campos que se añaden al `FormData`. Para pasar a Formspree
+u otro servicio basta con cambiar la URL y lo que se añade al `FormData`; el
+markup, la validación y los estados no se tocan.

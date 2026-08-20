@@ -443,6 +443,26 @@ h1 {
 .fg input::placeholder { color: rgba(196, 192, 182, 0.42); }
 .fg input:focus,
 .fg select:focus { outline: none; border-color: var(--accent); }
+.fg input:user-invalid,
+.fg select:user-invalid { border-color: #d0563f; }
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.form-submit[disabled] { opacity: 0.5; cursor: default; }
+
+.form-status {
+  margin-top: -8px;
+  min-height: 15px;
+  line-height: 1.5;
+  color: rgba(196, 192, 182, 0.62);
+}
+.form-status.ok { color: var(--accent); }
+.form-status.err { color: #e07a63; }
 .fg select option { background: var(--ink); color: var(--paper); }
 
 .form-submit {
@@ -755,23 +775,23 @@ footer {
         </div>
       </div>
 
-      <div class="form-box reveal d2">
+      <form class="form-box reveal d2" id="contact-form" novalidate>
         <h3>Cuéntanos sobre tu negocio.</h3>
         <div class="fg">
           <label class="mono" for="f-nombre">Nombre</label>
-          <input id="f-nombre" type="text" placeholder="María García">
+          <input id="f-nombre" name="nombre" type="text" placeholder="María García" required autocomplete="name">
         </div>
         <div class="fg">
           <label class="mono" for="f-email">Email corporativo</label>
-          <input id="f-email" type="email" placeholder="maria@empresa.com">
+          <input id="f-email" name="email" type="email" placeholder="maria@empresa.com" required autocomplete="email">
         </div>
         <div class="fg">
           <label class="mono" for="f-empresa">Empresa</label>
-          <input id="f-empresa" type="text" placeholder="Mi empresa S.L.">
+          <input id="f-empresa" name="empresa" type="text" placeholder="Mi empresa S.L." required autocomplete="organization">
         </div>
         <div class="fg">
           <label class="mono" for="f-area">¿En qué podemos ayudarte?</label>
-          <select id="f-area">
+          <select id="f-area" name="area" required>
             <option value="">Selecciona un área</option>
             <option>Automatización de procesos</option>
             <option>Análisis predictivo</option>
@@ -779,8 +799,11 @@ footer {
             <option>No lo sé — quiero orientación</option>
           </select>
         </div>
-        <button class="form-submit">Agendar sesión gratuita</button>
-      </div>
+        <!-- Trampa antispam: invisible para personas, la rellenan los bots. -->
+        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+        <button class="form-submit" type="submit">Agendar sesión gratuita</button>
+        <p class="mono form-status" id="form-status" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </div>
 </section>
@@ -804,6 +827,54 @@ footer {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // ── Formulario de contacto ────────────────────────
+  // Endpoint de Web3Forms. Sustituye ACCESS_KEY por la clave que recibes
+  // por email en https://web3forms.com (gratis, sin cuenta).
+  const ACCESS_KEY = 'PEGA_AQUI_TU_ACCESS_KEY';
+
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  const submit = form.querySelector('.form-submit');
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+
+    if (!form.checkValidity()) {
+      status.className = 'mono form-status err';
+      status.textContent = 'Revisa los campos marcados antes de enviar.';
+      form.querySelector(':invalid').focus();
+      return;
+    }
+
+    submit.disabled = true;
+    status.className = 'mono form-status';
+    status.textContent = 'Enviando…';
+
+    const data = new FormData(form);
+    data.append('access_key', ACCESS_KEY);
+    data.append('subject', 'Nueva solicitud de sesión — qaizn.com');
+    data.append('from_name', 'Web qaizn');
+
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: data
+      });
+      const out = await res.json();
+      if (!res.ok || !out.success) throw new Error(out.message || 'Error');
+
+      form.reset();
+      status.className = 'mono form-status ok';
+      status.textContent = 'Recibido. Te escribimos en menos de 24 h.';
+    } catch (err) {
+      status.className = 'mono form-status err';
+      status.innerHTML = 'No hemos podido enviarlo. Escríbenos a ' +
+        '<a href="mailto:hola@qaizn.com">hola@qaizn.com</a>.';
+    } finally {
+      submit.disabled = false;
+    }
+  });
 </script>
 
 </body>
