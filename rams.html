@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>qaizn — Inteligencia artificial para PyMEs</title>
+<meta name="description" content="Implementamos inteligencia artificial en PyMEs donde más duele: procesos lentos, datos sin explotar, decisiones a ciegas. Resultados en 4–6 semanas.">
+<link rel="icon" href="qaizn-icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Playfair+Display:wght@700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --paper:    #c4c0b6;
+  --paper-hi: #cfccc3;
+  --ink:      #14140f;
+  --ink-60:   rgba(20, 20, 15, 0.58);
+  --rule:     rgba(20, 20, 15, 0.22);
+  --accent:   #c2521a;
+  --pad:      96px;
+  --max:      1440px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'Archivo', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: inherit; text-decoration: none; }
+a:hover { opacity: 0.75; }
+
+img, svg { max-width: 100%; }
+
+/* ── Primitivos ────────────────────────────────── */
+
+.mono {
+  font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.weave {
+  background-image:
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.16) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(20,20,15,0.05)   0 1px, transparent 1px 3px);
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding-left: var(--pad);
+  padding-right: var(--pad);
+}
+
+.section {
+  padding-top: 110px;
+  padding-bottom: 104px;
+  border-top: 1px solid var(--rule);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 60px;
+  margin-bottom: 68px;
+}
+
+.section-head .lead { display: flex; flex-direction: column; gap: 22px; }
+
+.eyebrow { color: var(--accent); }
+
+h2 {
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 15ch;
+}
+
+.section-note {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-60);
+  max-width: 42ch;
+  padding-bottom: 6px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px;
+  padding: 0 34px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink);
+  transition: opacity 0.2s ease;
+}
+.btn-fill { background: var(--ink); color: var(--paper); }
+.btn-line { background: none; color: var(--ink); }
+.btn-accent {
+  background: var(--accent);
+  color: var(--ink);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Reveal ────────────────────────────────────── */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.08s; }
+.d2 { transition-delay: 0.16s; }
+.d3 { transition-delay: 0.24s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+
+/* ── Nav ───────────────────────────────────────── */
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--pad);
+  height: 88px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.brand { display: flex; align-items: center; gap: 14px; }
+.brand-mark {
+  width: 20px; height: 20px;
+  border: 4px solid var(--ink);
+  border-radius: 50%;
+  flex: none;
+}
+.brand-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 42px;
+  padding: 0 22px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ── Hero ──────────────────────────────────────── */
+
+#hero { padding: 132px 0 128px; }
+
+.hero-inner { max-width: 1000px; display: flex; flex-direction: column; gap: 34px; }
+
+h1 {
+  font-size: clamp(40px, 6.5vw, 84px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  max-width: 15ch;
+}
+
+.hero-sub {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--ink-60);
+  max-width: 56ch;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding-top: 10px;
+}
+
+/* ── 01 Desafíos ───────────────────────────────── */
+
+.pain-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.pain-card {
+  background: var(--paper);
+  padding: 36px 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.pain-card:first-child { padding-left: 0; }
+.pain-card:last-child  { padding-right: 0; }
+
+.card-title {
+  font-size: 19px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.card-body {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-60);
+}
+
+/* ── 02 Soluciones ─────────────────────────────── */
+
+.tint { background-color: var(--paper-hi); }
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+}
+
+.svc {
+  display: flex;
+  gap: 30px;
+  padding-top: 30px;
+  border-top: 2px solid var(--ink);
+}
+
+.svc-mark {
+  width: 56px; height: 56px;
+  flex: none;
+  border: 2px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.svc-mark.round { border-radius: 50%; }
+
+.svc-copy { display: flex; flex-direction: column; gap: 14px; }
+
+.svc-title {
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.svc-body {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-60);
+  max-width: 46ch;
+}
+
+/* ── 03 Casos ──────────────────────────────────── */
+
+.cases-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+
+.case-card {
+  background: var(--paper);
+  padding: 44px 38px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.case-n {
+  font-size: clamp(52px, 5.4vw, 72px);
+  font-weight: 500;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.case-n span { font-size: 0.47em; }
+
+.case-body {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-60);
+  border-top: 1px solid var(--rule);
+  padding-top: 20px;
+}
+
+/* ── 04 Proceso ────────────────────────────────── */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-top: 2px solid var(--ink);
+  padding-top: 26px;
+}
+
+.step-mark { display: flex; align-items: center; gap: 14px; }
+.step-dot {
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  border: 2px solid var(--ink);
+  flex: none;
+}
+.step-dot.on { background: var(--accent); border-color: var(--accent); }
+
+.step-title {
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+/* ── CTA / contacto ────────────────────────────── */
+
+#contacto {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 116px 0 110px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-ring {
+  position: absolute;
+  right: -140px;
+  top: -110px;
+  width: 520px; height: 520px;
+  border: 26px solid rgba(196, 192, 182, 0.16);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.cta-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+  align-items: start;
+}
+
+.cta-left { display: flex; flex-direction: column; gap: 24px; }
+
+.cta-title {
+  font-size: clamp(32px, 3.9vw, 52px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.cta-copy {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.78;
+  max-width: 46ch;
+}
+
+.mini-stats { display: flex; gap: 56px; }
+.mini-stat { display: flex; flex-direction: column; gap: 8px; }
+.mini-n {
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+.mini-l { opacity: 0.6; }
+
+.form-box {
+  border: 1px solid rgba(196, 192, 182, 0.28);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.form-box h3 {
+  font-size: 23px;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.fg { display: flex; flex-direction: column; gap: 9px; }
+.fg label { opacity: 0.62; }
+
+.fg input,
+.fg select {
+  height: 48px;
+  padding: 0 14px;
+  background: transparent;
+  border: 1px solid rgba(196, 192, 182, 0.28);
+  color: var(--paper);
+  font-family: inherit;
+  font-size: 15px;
+  border-radius: 0;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.fg input::placeholder { color: rgba(196, 192, 182, 0.42); }
+.fg input:focus,
+.fg select:focus { outline: none; border-color: var(--accent); }
+.fg select option { background: var(--ink); color: var(--paper); }
+
+.form-submit {
+  height: 56px;
+  border: none;
+  background: var(--accent);
+  color: var(--ink);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* ── Footer ────────────────────────────────────── */
+
+footer {
+  border-top: 1px solid var(--rule);
+}
+
+.footer-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 46px var(--pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-mark {
+  width: 22px; height: 22px;
+  border: 4px solid var(--ink);
+  border-radius: 50%;
+  flex: none;
+}
+
+/* ── Responsive ────────────────────────────────── */
+
+@media (max-width: 1024px) {
+  :root { --pad: 48px; }
+
+  .section { padding-top: 84px; padding-bottom: 80px; }
+  .section-head { flex-direction: column; align-items: flex-start; gap: 28px; margin-bottom: 48px; }
+  .section-note { padding-bottom: 0; }
+
+  #hero { padding: 96px 0 92px; }
+
+  .pain-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pain-card { padding: 32px 28px 36px; }
+  .pain-card:first-child, .pain-card:last-child { padding-left: 28px; padding-right: 28px; }
+
+  .svc-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cases-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+
+  #contacto { padding: 88px 0 84px; }
+  .cta-grid { grid-template-columns: 1fr; gap: 48px; }
+  .cta-ring { right: -220px; top: -180px; }
+}
+
+@media (max-width: 640px) {
+  :root { --pad: 24px; }
+
+  /* No hay menú hamburguesa en el markup: en lugar de esconder la
+     navegación tras un control que no existe, dejamos la marca y el
+     CTA principal. La página es un único scroll. */
+  .nav-links li:not(:last-child) { display: none; }
+  .nav-inner { height: 72px; }
+
+  #hero { padding: 72px 0 68px; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; }
+  .hero-sub { font-size: 16px; }
+
+  .section { padding-top: 64px; padding-bottom: 60px; }
+
+  .pain-grid { grid-template-columns: 1fr; }
+  .steps { grid-template-columns: 1fr; }
+
+  .case-card { padding: 34px 26px; }
+
+  .svc { gap: 20px; }
+  .svc-mark { width: 44px; height: 44px; }
+
+  #contacto { padding: 68px 0 64px; }
+  .mini-stats { flex-direction: column; gap: 26px; }
+  .form-box { padding: 30px 24px; }
+
+  .footer-inner { flex-direction: column; align-items: flex-start; gap: 18px; padding: 36px var(--pad); }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ────────────────────────────────────────── -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">qaizn</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#pain" class="mono">Desafíos</a></li>
+      <li><a href="#services" class="mono">Soluciones</a></li>
+      <li><a href="#casos" class="mono">Casos</a></li>
+      <li><a href="#proceso" class="mono">Proceso</a></li>
+      <li><a href="#contacto" class="nav-pill">Comenzar</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ─── HERO ───────────────────────────────────────── -->
+<section id="hero" class="weave">
+  <div class="wrap">
+    <div class="hero-inner">
+      <p class="mono eyebrow reveal visible">IA estratégica para PyMEs</p>
+      <h1 class="reveal visible d1">Tu empresa, compitiendo en otro nivel.</h1>
+      <p class="hero-sub reveal visible d2">Implementamos inteligencia artificial donde más duele: procesos lentos, datos sin explotar, decisiones a ciegas. Resultados visibles en las primeras semanas.</p>
+      <div class="hero-actions reveal visible d3">
+        <a href="#contacto" class="btn btn-fill">Agendar sesión gratuita</a>
+        <a href="#casos" class="btn btn-line">Ver casos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 01 DESAFÍOS ────────────────────────────────── -->
+<section id="pain" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="lead">
+        <p class="mono eyebrow reveal">01 — Obstáculos habituales</p>
+        <h2 class="reveal d1">Reconocerás alguno de estos problemas.</h2>
+      </div>
+      <p class="section-note reveal d2">Las PyMEs más competitivas no tienen más recursos — tienen mejores herramientas. Estos son los frenos más comunes, y los que resolvemos primero.</p>
+    </div>
+
+    <div class="pain-grid reveal">
+      <div class="pain-card">
+        <p class="mono eyebrow">01</p>
+        <p class="card-title">Tiempo que se evapora</p>
+        <p class="card-body">Tu equipo dedica horas a datos, reportes e inventarios. Trabajo que no genera valor — y que la IA puede hacer sola.</p>
+      </div>
+      <div class="pain-card">
+        <p class="mono eyebrow">02</p>
+        <p class="card-title">Información que no habla</p>
+        <p class="card-body">Tu ERP y CRM acumulan años de datos valiosos. Sin las herramientas correctas, esa inteligencia permanece enterrada.</p>
+      </div>
+      <div class="pain-card">
+        <p class="mono eyebrow">03</p>
+        <p class="card-title">Costes que sangran margen</p>
+        <p class="card-body">Errores evitables, trabajo duplicado y oportunidades que se escapan — cada uno tiene un coste concreto en tu cuenta de resultados.</p>
+      </div>
+      <div class="pain-card">
+        <p class="mono eyebrow">04</p>
+        <p class="card-title">Decisiones a ciegas</p>
+        <p class="card-body">Cuando la información llega tarde o incompleta, decides por intuición. En mercados que se mueven rápido, eso tiene un precio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 02 SOLUCIONES ──────────────────────────────── -->
+<section id="services" class="section weave tint">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="lead">
+        <p class="mono eyebrow reveal">02 — Lo que hacemos</p>
+        <h2 class="reveal d1">Cuatro formas de ganar ventaja.</h2>
+      </div>
+      <p class="section-note reveal d2">No vendemos tecnología — vendemos resultados. Cada solución se integra con tus sistemas actuales y empieza a generar impacto en semanas, no meses.</p>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-mark round">
+          <span style="width:12px;height:12px;border-radius:50%;background:var(--accent);"></span>
+        </div>
+        <div class="svc-copy">
+          <p class="svc-title">Automatización inteligente</p>
+          <p class="svc-body">IA que asume las tareas rutinarias y aprende con cada ciclo. Tu equipo recupera hasta un 60% del tiempo — tiempo que reinviertes donde importa.</p>
+          <p class="mono" style="color:var(--ink-60);">Eficiencia</p>
+        </div>
+      </div>
+
+      <div class="svc reveal d1">
+        <div class="svc-mark">
+          <span style="width:24px;height:2px;background:var(--accent);"></span>
+        </div>
+        <div class="svc-copy">
+          <p class="svc-title">Análisis predictivo</p>
+          <p class="svc-body">Conectamos tus sistemas para que hablen entre sí. Dashboards que se actualizan solos, predicciones de demanda y alertas antes de que los problemas ocurran.</p>
+          <p class="mono" style="color:var(--ink-60);">Inteligencia</p>
+        </div>
+      </div>
+
+      <div class="svc reveal d2">
+        <div class="svc-mark">
+          <span style="width:22px;height:22px;background:var(--accent);"></span>
+        </div>
+        <div class="svc-copy">
+          <p class="svc-title">Optimización de procesos</p>
+          <p class="svc-body">Mapeamos cómo funciona realmente tu empresa — no cómo crees que funciona. Identificamos fricciones ocultas y las eliminamos con IA en tiempo real.</p>
+          <p class="mono" style="color:var(--ink-60);">Rendimiento</p>
+        </div>
+      </div>
+
+      <div class="svc reveal d3">
+        <div class="svc-mark round">
+          <span style="width:26px;height:26px;border:2px solid var(--accent);border-radius:50%;"></span>
+        </div>
+        <div class="svc-copy">
+          <p class="svc-title">Asistentes inteligentes</p>
+          <p class="svc-body">Asistentes que nunca duermen: atienden consultas, cualifican leads y apoyan al equipo comercial. Misma calidad de atención a las 3h que a las 10h.</p>
+          <p class="mono" style="color:var(--ink-60);">Escala</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 03 CASOS ───────────────────────────────────── -->
+<section id="casos" class="section">
+  <div class="wrap">
+    <div class="section-head" style="display:flex;flex-direction:column;align-items:flex-start;gap:22px;margin-bottom:66px;">
+      <p class="mono eyebrow reveal">03 — Casos de éxito</p>
+      <h2 class="reveal d1" style="max-width:none;">Números reales. Empresas reales.</h2>
+    </div>
+
+    <div class="cases-grid reveal">
+      <div class="case-card">
+        <p class="mono" style="color:var(--ink-60);">Atención al cliente</p>
+        <p class="case-n">&minus;85<span>%</span></p>
+        <p class="mono eyebrow">Tiempo de respuesta</p>
+        <p class="case-body">Asistente que atiende consultas, cualifica leads y genera presupuestos 24/7. El equipo comercial queda libre para cerrar.</p>
+      </div>
+      <div class="case-card">
+        <p class="mono" style="color:var(--ink-60);">Servicios B2B</p>
+        <p class="case-n">340<span>h</span></p>
+        <p class="mono eyebrow">Ahorro mensual</p>
+        <p class="case-body">Consultora de 45 empleados: fuera las tareas manuales en facturación, reportes y seguimiento comercial.</p>
+      </div>
+      <div class="case-card">
+        <p class="mono" style="color:var(--ink-60);">E-commerce</p>
+        <p class="case-n">+127<span>%</span></p>
+        <p class="mono eyebrow">Tasa de conversión</p>
+        <p class="case-body">IA integrada con el CRM para segmentar, personalizar y predecir abandono. Campañas 4× más efectivas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 PROCESO ─────────────────────────────────── -->
+<section id="proceso" class="section weave tint">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="lead">
+        <p class="mono eyebrow reveal">04 — Cómo trabajamos</p>
+        <h2 class="reveal d1" style="max-width:16ch;">De cero a resultados en 4–6 semanas.</h2>
+      </div>
+      <p class="section-note reveal d2">Empezamos pequeño, demostramos valor rápido y escalamos solo cuando tú lo decides. Sin grandes inversiones iniciales.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-mark"><span class="step-dot on"></span><span class="mono">Semana 1</span></div>
+        <p class="step-title">Diagnóstico</p>
+        <p class="card-body">Escuchamos antes de proponer. Analizamos sistemas, procesos reales y metas para encontrar el punto de entrada con más retorno.</p>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-mark"><span class="step-dot"></span><span class="mono">Semanas 2–4</span></div>
+        <p class="step-title">Proyecto piloto</p>
+        <p class="card-body">Un área concreta: implementamos y medimos. Si los números no convencen, se ajusta. El piloto existe para eliminar dudas.</p>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-mark"><span class="step-dot"></span><span class="mono">Semanas 5–6</span></div>
+        <p class="step-title">Escalado</p>
+        <p class="card-body">Con los resultados sobre la mesa, expandimos a otras áreas. Integrado con lo que ya tienes — sin migraciones.</p>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-mark"><span class="step-dot"></span><span class="mono">Continuo</span></div>
+        <p class="step-title">Optimización</p>
+        <p class="card-body">Monitorizamos métricas, ajustamos modelos y formamos a tu equipo para que la solución sea cada vez más tuya.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA / CONTACTO ─────────────────────────────── -->
+<section id="contacto">
+  <span class="cta-ring"></span>
+  <div class="wrap">
+    <div class="cta-grid">
+      <div class="cta-left">
+        <p class="mono eyebrow reveal">Sin coste, sin letra pequeña</p>
+        <p class="cta-title reveal d1">45 minutos que pueden cambiar tu empresa.</p>
+        <p class="cta-copy reveal d2">Analizamos tu operación, identificamos los tres puntos de mayor impacto y te mostramos un plan concreto. Te vas con ideas aplicables — uses nuestros servicios o no.</p>
+        <div class="mini-stats reveal d3">
+          <div class="mini-stat">
+            <p class="mini-n">4–6</p>
+            <p class="mono mini-l">Semanas al primer resultado</p>
+          </div>
+          <div class="mini-stat">
+            <p class="mini-n">100%</p>
+            <p class="mono mini-l">Sin riesgo inicial</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-box reveal d2">
+        <h3>Cuéntanos sobre tu negocio.</h3>
+        <div class="fg">
+          <label class="mono" for="f-nombre">Nombre</label>
+          <input id="f-nombre" type="text" placeholder="María García">
+        </div>
+        <div class="fg">
+          <label class="mono" for="f-email">Email corporativo</label>
+          <input id="f-email" type="email" placeholder="maria@empresa.com">
+        </div>
+        <div class="fg">
+          <label class="mono" for="f-empresa">Empresa</label>
+          <input id="f-empresa" type="text" placeholder="Mi empresa S.L.">
+        </div>
+        <div class="fg">
+          <label class="mono" for="f-area">¿En qué podemos ayudarte?</label>
+          <select id="f-area">
+            <option value="">Selecciona un área</option>
+            <option>Automatización de procesos</option>
+            <option>Análisis predictivo</option>
+            <option>Asistentes de IA</option>
+            <option>No lo sé — quiero orientación</option>
+          </select>
+        </div>
+        <button class="form-submit">Agendar sesión gratuita</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="brand">
+      <span class="footer-mark"></span>
+      <span class="brand-name">qaizn</span>
+    </div>
+    <p class="mono" style="color:var(--ink-60);">
+      <a href="mailto:hola@qaizn.com">hola@qaizn.com</a> &middot; © 2026 qaizn
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
