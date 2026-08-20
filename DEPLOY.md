@@ -110,7 +110,9 @@ a `hola@qaizn.com`. Nadie se queda sin poder contactar.
   confirmación, o error con el email de respaldo.
 - Lleva un campo trampa (`botcheck`) oculto por CSS. Los bots lo rellenan,
   las personas no lo ven; Web3Forms descarta esos envíos.
-- Los campos que llegan al email: nombre, email, empresa, area.
+- Los campos que llegan al email: nombre (y apellidos), email, empresa,
+  cargo y area. `cargo` es el único opcional, y si se deja en blanco no
+  se envía — así el email no llega con líneas vacías.
 
 ### Cambiar de proveedor
 

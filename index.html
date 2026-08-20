@@ -426,6 +426,7 @@ h1 {
 
 .fg { display: flex; flex-direction: column; gap: 9px; }
 .fg label { opacity: 0.62; }
+.fg label .opt { opacity: 0.6; }
 
 .fg input,
 .fg select {
@@ -778,8 +779,8 @@ footer {
       <form class="form-box reveal d2" id="contact-form" novalidate>
         <h3>Cuéntanos sobre tu negocio.</h3>
         <div class="fg">
-          <label class="mono" for="f-nombre">Nombre</label>
-          <input id="f-nombre" name="nombre" type="text" placeholder="María García" required autocomplete="name">
+          <label class="mono" for="f-nombre">Nombre y apellidos</label>
+          <input id="f-nombre" name="nombre" type="text" placeholder="María García Ruiz" required autocomplete="name">
         </div>
         <div class="fg">
           <label class="mono" for="f-email">Email corporativo</label>
@@ -788,6 +789,10 @@ footer {
         <div class="fg">
           <label class="mono" for="f-empresa">Empresa</label>
           <input id="f-empresa" name="empresa" type="text" placeholder="Mi empresa S.L." required autocomplete="organization">
+        </div>
+        <div class="fg">
+          <label class="mono" for="f-cargo">Cargo <span class="opt">(opcional)</span></label>
+          <input id="f-cargo" name="cargo" type="text" placeholder="Directora de operaciones" autocomplete="organization-title">
         </div>
         <div class="fg">
           <label class="mono" for="f-area">¿En qué podemos ayudarte?</label>
@@ -852,6 +857,11 @@ footer {
     status.textContent = 'Enviando…';
 
     const data = new FormData(form);
+    // Los opcionales en blanco no viajan: si no, llegan al email como
+    // líneas vacías que hay que ignorar a mano.
+    for (const [k, v] of [...data.entries()]) {
+      if (typeof v === 'string' && !v.trim()) data.delete(k);
+    }
     data.append('access_key', ACCESS_KEY);
     data.append('subject', 'Nueva solicitud de sesión — qaizn.com');
     data.append('from_name', 'Web qaizn');
