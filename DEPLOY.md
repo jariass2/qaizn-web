@@ -4,10 +4,10 @@
 
 El sitio es una **app de EasyPanel** conectada a GitHub:
 
-| Ajuste             | Valor                |
-| ------------------ | -------------------- |
-| Repositorio        | `jariass2/qaizn-web` |
-| Rama               | `main`               |
+| Ajuste              | Valor                |
+| ------------------- | -------------------- |
+| Repositorio         | `jariass2/qaizn-web` |
+| Rama                | `main`               |
 | Ruta de compilación | `/`                  |
 
 EasyPanel sirve la raíz del repo como sitio estático. **Todo lo que llega a
@@ -18,54 +18,46 @@ la raíz queda accesible por su nombre de archivo.
 
 ## Versiones de la landing
 
-| Archivo      | URL                    | Qué es                                                         |
-| ------------ | ---------------------- | -------------------------------------------------------------- |
-| `index.html` | `qaizn.com`            | **La que está en producción.** Build empaquetado (~525 KB).     |
-| `rams.html`  | `qaizn.com/rams.html`  | Dirección alternativa: paleta lino, Dieter Rams. Standalone.    |
+| Archivo        | URL                     | Qué es                                                      |
+| -------------- | ----------------------- | ----------------------------------------------------------- |
+| `index.html`   | `/`                     | **En producción.** Dirección Rams: paleta lino, standalone.  |
+| `clasico.html` | `/clasico.html`         | La anterior. Build empaquetado (~525 KB).                    |
 
-Ambas llevan el mismo contenido y las mismas secciones. Cambian el diseño y la
-tipografía, no el mensaje.
+Las dos llevan el mismo contenido y las mismas secciones. Cambian el diseño y
+la tipografía, no el mensaje.
 
-Las dos están desplegadas siempre. La que decide qué ve el visitante que entra
-por `qaizn.com` es **solo `index.html`**.
+Ambas están desplegadas siempre. La que decide qué ve quien entra por la raíz
+es **solo `index.html`**.
 
 ## Cambiar de versión en producción
 
-Poner la versión Rams en producción:
+Volver a poner la clásica de portada:
 
 ```bash
 git checkout main
 git pull
 
-cp index.html index-clasico.html   # guarda la actual antes de sobrescribirla
-cp rams.html index.html
+cp index.html rams.html     # guarda la actual antes de sobrescribirla
+cp clasico.html index.html
 
 git add -A
-git commit -m "Cambia la portada a la dirección Rams"
+git commit -m "Vuelve la portada a la versión clásica"
 git push
 ```
 
-EasyPanel redespliega solo. En un minuto `qaizn.com` sirve la nueva.
+EasyPanel redespliega solo. En un minuto la raíz sirve la nueva.
 
-Volver a la anterior:
+Deshacer el último cambio de portada, sin más:
 
 ```bash
 git checkout main
-git revert HEAD      # deshace el commit del cambio
+git revert HEAD
 git push
 ```
 
-O, si ya hay commits encima:
-
-```bash
-cp index-clasico.html index.html
-git commit -am "Vuelve a la portada clásica"
-git push
-```
-
-> El `cp index.html index-clasico.html` del primer paso importa: `index.html`
-> es un build empaquetado que no se regenera desde este repo. Si lo
-> sobrescribes sin copia, recuperarlo pasa por el historial de git.
+> El `cp` de seguridad del primer paso importa: `clasico.html` es un build
+> empaquetado que **no se regenera desde este repo**. Si lo sobrescribes sin
+> copia, recuperarlo pasa por el historial de git.
 
 ## Previsualizar antes de publicar
 
@@ -75,15 +67,12 @@ En local, sin desplegar nada:
 python3 -m http.server 8000
 ```
 
-Y abre `http://localhost:8000/rams.html`.
+Y abre `http://localhost:8000/`.
 
 ## Notas
 
-- **El formulario de contacto no envía a ninguna parte.** Ni en `index.html` ni
-  en `rams.html`: es markup estático, sin `<form>`, sin `action` y sin handler.
-  Para capturar leads de verdad hay que conectarlo a un endpoint.
-- `rams.html` carga las tipografías desde Google Fonts. `index.html` las lleva
-  embebidas en el propio bundle.
+- `index.html` (Rams) carga las tipografías desde Google Fonts.
+  `clasico.html` las lleva embebidas en su propio bundle.
 - Archivos históricos que también están en la raíz y por tanto son públicos:
   `index_old.html`, `qaizn2.html`, `hero-neobrutalist-backup.html`,
   `index_bundled_backup.html`. No están enlazados desde ningún sitio, pero
