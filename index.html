@@ -461,6 +461,9 @@ h1 {
   color: rgba(196, 192, 182, 0.6);
 }
 
+.form-fine a,
+.footer-legal a { text-decoration: underline; text-underline-offset: 2px; }
+
 .form-fine {
   margin-top: -10px;
   font-size: 13px;
@@ -924,7 +927,7 @@ footer {
         <!-- Trampa antispam: invisible para personas, la rellenan los bots. -->
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
         <button class="form-submit" type="submit">Reservar mis 45 minutos</button>
-        <p class="form-fine">Usamos tus datos para responderte a ti, nada más. Ni lista de correo ni terceros.</p>
+        <p class="form-fine">Usamos tus datos para responderte a ti, nada más. Ni lista de correo ni terceros. Más detalle en la <a href="/privacidad.html">política de privacidad</a>.</p>
         <p class="mono form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
@@ -942,6 +945,9 @@ footer {
     </div>
     <p class="mono" style="color:var(--ink-60);">
       <a href="mailto:hola@qaizn.com">hola@qaizn.com</a> &middot; © 2026 qaizn
+    </p>
+    <p class="mono footer-legal" style="color:var(--ink-60);">
+      <a href="/privacidad.html">Política de privacidad</a> &middot; <a href="/aviso-legal.html">Aviso legal</a>
     </p>
   </div>
 </footer>
