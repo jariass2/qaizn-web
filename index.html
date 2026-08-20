@@ -924,8 +924,9 @@ footer {
             <option>Aún no lo sé, quiero orientación</option>
           </select>
         </div>
-        <!-- Trampa antispam: invisible para personas, la rellenan los bots. -->
-        <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+        <!-- Trampa antispam: invisible para personas, la rellenan los bots.
+             El prefijo _ hace que SimplyForms lo excluya del cuerpo del email. -->
+        <input type="checkbox" name="_botcheck" class="hp" tabindex="-1" autocomplete="off">
         <button class="form-submit" type="submit">Reservar mis 45 minutos</button>
         <p class="form-fine">Usamos tus datos para responderte a ti, nada más. Ni lista de correo ni terceros. Más detalle en la <a href="/privacidad.html">política de privacidad</a>.</p>
         <p class="mono form-status" id="form-status" role="status" aria-live="polite"></p>
@@ -960,9 +961,11 @@ footer {
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
   // ── Formulario de contacto ────────────────────────
-  // Clave pública de Web3Forms (https://web3forms.com). Va en el cliente por
-  // diseño: solo autoriza el envío al email registrado, no da acceso a nada.
-  const ACCESS_KEY = '49b2b809-1591-41ca-9fd9-7e45f737dbee';
+  // Endpoint de SimplyForms (https://simplyforms.app), alojado en Hetzner
+  // Alemania. Relé sin almacenamiento: recibe el envío, lo manda por correo
+  // y lo descarta. El ID va en el cliente por diseño: solo autoriza el envío
+  // al email registrado, no da acceso a nada.
+  const ENDPOINT = 'https://api.simplyforms.app/v1/forms/iCYIyThsapHffDWnVM1KjA';
 
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
@@ -978,6 +981,15 @@ footer {
       return;
     }
 
+    // El plan gratuito de SimplyForms no filtra la trampa en servidor, así que
+    // la comprobamos aquí: al bot le decimos que todo fue bien y no enviamos.
+    if (form.elements._botcheck.checked) {
+      form.reset();
+      status.className = 'mono form-status ok';
+      status.textContent = 'Recibido. Te escribimos en menos de 24 h.';
+      return;
+    }
+
     submit.disabled = true;
     status.className = 'mono form-status';
     status.textContent = 'Enviando…';
@@ -988,17 +1000,19 @@ footer {
     for (const [k, v] of [...data.entries()]) {
       if (typeof v === 'string' && !v.trim()) data.delete(k);
     }
-    data.append('access_key', ACCESS_KEY);
     data.append('subject', 'Nueva solicitud de sesión desde qaizn.com');
-    data.append('from_name', 'Web qaizn');
 
     try {
-      const res = await fetch('https://api.web3forms.com/submit', {
+      const res = await fetch(ENDPOINT, {
         method: 'POST',
+        headers: { 'Accept': 'application/json' },
         body: data
       });
-      const out = await res.json();
-      if (!res.ok || !out.success) throw new Error(out.message || 'Error');
+      const out = await res.json().catch(() => ({}));
+      // La API responde {success:true} al aceptar y {ok:false,...} al fallar.
+      if (!res.ok || out.success === false || out.ok === false) {
+        throw new Error(out.message || 'Error');
+      }
 
       form.reset();
       status.className = 'mono form-status ok';
