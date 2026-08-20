@@ -3,9 +3,4 @@
 User-agent: *
 Allow: /
 
-# Bloquear archivos específicos si es necesario
-Disallow: /admin/
-Disallow: /private/
-
-# Sitemap
-Sitemap: https://qaizn.com/sitemap.xml
+Sitemap: https://www.qaizn.com/sitemap.xml
