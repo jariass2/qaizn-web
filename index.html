@@ -340,6 +340,14 @@ h1 {
 }
 .case-n span { font-size: 0.47em; }
 
+.cases-note {
+  margin-top: 26px;
+  max-width: 62ch;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink-60);
+}
+
 .case-body {
   font-size: 14px;
   line-height: 1.65;
@@ -451,6 +459,13 @@ h1 {
   font-size: 14px;
   line-height: 1.6;
   color: rgba(196, 192, 182, 0.6);
+}
+
+.form-fine {
+  margin-top: -10px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(196, 192, 182, 0.5);
 }
 
 .fg { display: flex; flex-direction: column; gap: 9px; }
@@ -683,7 +698,7 @@ footer {
     <div class="hero-inner">
       <p class="mono eyebrow reveal visible">Inteligencia artificial para PyMEs</p>
       <h1 class="reveal visible d1">Automatiza lo rutinario. Potencia a tu equipo.</h1>
-      <p class="hero-sub reveal visible d2">Desplegamos IA sobre los sistemas que ya tienes. El trabajo de poco valor deja de consumir horas y tu equipo llega a lo que antes no podía abarcar. Primer resultado medible en 4-6 semanas.</p>
+      <p class="hero-sub reveal visible d2">Desplegamos IA sobre los sistemas que ya tienes. El trabajo de poco valor deja de comerse el día y tu equipo llega a donde antes no llegaba. Primer resultado medible en 4-6 semanas.</p>
       <div class="hero-actions reveal visible d3">
         <a href="#contacto" class="btn btn-fill">Reservar diagnóstico gratuito</a>
         <a href="#casos" class="btn btn-line">Ver los números</a>
@@ -768,7 +783,7 @@ footer {
         </div>
         <div class="svc-copy">
           <p class="svc-title">Optimización de procesos</p>
-          <p class="svc-body">Mapeamos cómo funciona tu empresa en la práctica, que casi nunca es como está escrito. Localizamos los atascos y los quitamos con IA en tiempo real.</p>
+          <p class="svc-body">Mapeamos cómo funciona tu empresa en la práctica, que casi nunca es como está escrito. Localizamos los atascos y los quitamos, para que el trabajo deje de esperar días en la bandeja de alguien.</p>
           <p class="mono" style="color:var(--ink-60);">Rendimiento</p>
         </div>
       </div>
@@ -812,9 +827,11 @@ footer {
         <p class="mono" style="color:var(--ink-60);">E-commerce</p>
         <p class="case-n">+127<span>%</span></p>
         <p class="mono eyebrow">Tasa de conversión</p>
-        <p class="case-body">IA conectada al CRM para segmentar, personalizar y anticipar qué cliente estaba a punto de irse. Las campañas pasaron a ser 4× más efectivas.</p>
+        <p class="case-body">IA conectada al CRM para segmentar, personalizar y anticipar qué cliente estaba a punto de irse.</p>
       </div>
     </div>
+
+    <p class="cases-note reveal d1">Proyectos reales de clientes reales. Damos los nombres cuando ellos nos dejan, y en la sesión te contamos el caso entero: qué se tocó, qué costó y qué no salió a la primera.</p>
   </div>
 </section>
 
@@ -869,8 +886,8 @@ footer {
             <p class="mono mini-l">Semanas al primer resultado</p>
           </div>
           <div class="mini-stat">
-            <p class="mini-n">100%</p>
-            <p class="mono mini-l">Sin riesgo inicial</p>
+            <p class="mini-n">0&thinsp;&euro;</p>
+            <p class="mono mini-l">Lo que cuesta la sesión</p>
           </div>
         </div>
       </div>
@@ -907,6 +924,7 @@ footer {
         <!-- Trampa antispam: invisible para personas, la rellenan los bots. -->
         <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
         <button class="form-submit" type="submit">Reservar mis 45 minutos</button>
+        <p class="form-fine">Usamos tus datos para responderte a ti, nada más. Ni lista de correo ni terceros.</p>
         <p class="mono form-status" id="form-status" role="status" aria-live="polite"></p>
       </form>
     </div>
