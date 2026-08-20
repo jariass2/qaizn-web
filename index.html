@@ -829,9 +829,9 @@ footer {
   document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
   // ── Formulario de contacto ────────────────────────
-  // Endpoint de Web3Forms. Sustituye ACCESS_KEY por la clave que recibes
-  // por email en https://web3forms.com (gratis, sin cuenta).
-  const ACCESS_KEY = 'PEGA_AQUI_TU_ACCESS_KEY';
+  // Clave pública de Web3Forms (https://web3forms.com). Va en el cliente por
+  // diseño: solo autoriza el envío al email registrado, no da acceso a nada.
+  const ACCESS_KEY = '49b2b809-1591-41ca-9fd9-7e45f737dbee';
 
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');

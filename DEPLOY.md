@@ -85,21 +85,22 @@ El formulario de `index.html` envía por **Web3Forms**: un endpoint que
 reenvía cada envío a tu email. No hay backend ni base de datos, que es lo que
 permite que el sitio siga siendo estático.
 
-### Falta un paso para activarlo
+### Estado: activo
 
-1. Entra en https://web3forms.com, escribe `hola@qaizn.com` y pulsa
-   "Create Access Key". Te llega la clave por email. No hay que crear cuenta.
-2. En `index.html`, busca esta línea y pega la clave:
+La clave ya está puesta en `index.html` y el envío está probado contra el
+endpoint real. Los mensajes llegan al email registrado en Web3Forms.
 
-   ```js
-   const ACCESS_KEY = 'PEGA_AQUI_TU_ACCESS_KEY';
-   ```
+```js
+const ACCESS_KEY = '49b2b809-1591-41ca-9fd9-7e45f737dbee';
+```
 
-3. `git commit` + `git push`. EasyPanel redespliega y el formulario funciona.
+Es una clave **pública**: va en el cliente por diseño y solo autoriza enviar
+al email registrado. No da acceso a nada, así que no pasa nada porque esté en
+el repo. Si alguna vez recibes spam por ella, se regenera desde Web3Forms y se
+sustituye esa línea.
 
-Mientras la clave sea el placeholder, el envío falla de forma controlada:
-el visitante ve "No hemos podido enviarlo" con un enlace a `hola@qaizn.com`.
-Nadie se queda sin poder contactar.
+Si el envío fallara, el visitante ve "No hemos podido enviarlo" con un enlace
+a `hola@qaizn.com`. Nadie se queda sin poder contactar.
 
 ### Qué hace el formulario
 
