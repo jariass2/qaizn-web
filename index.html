@@ -550,6 +550,68 @@ footer {
   flex: none;
 }
 
+/* ── 05 Equipo de agentes ──────────────────────── */
+.atlas-band {
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 38px 0 42px;
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 1px;
+}
+.atlas-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.atlas-band .card-body { max-width: 62ch; }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+.team-card {
+  background: var(--paper);
+  padding: 30px 26px 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.team-card:nth-child(4n + 1) { padding-left: 0; }
+.team-card:nth-child(4n)     { padding-right: 0; }
+
+.team-name {
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.team-role { color: var(--ink-60); }
+
+.pmi-block {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+.pmi-block h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+}
+.pmi-list { display: flex; flex-direction: column; gap: 16px; }
+.pmi-list div { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 18px; }
+.pmi-list p { margin: 0; }
+
 /* ── Responsive ────────────────────────────────── */
 
 @media (max-width: 1024px) {
@@ -568,6 +630,12 @@ footer {
   .svc-grid { grid-template-columns: 1fr; gap: 40px; }
   .cases-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 36px; }
+  .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .team-card { padding: 28px 24px 32px; }
+  .team-card:nth-child(4n + 1) { padding-left: 24px; }
+  .team-card:nth-child(4n)     { padding-right: 24px; }
+  .atlas-band { grid-template-columns: 1fr; gap: 20px; }
+  .pmi-block { grid-template-columns: 1fr; gap: 28px; }
 
   #contacto { padding: 88px 0 84px; }
   .cta-grid { grid-template-columns: 1fr; gap: 48px; }
@@ -592,6 +660,8 @@ footer {
 
   .pain-grid { grid-template-columns: 1fr; }
   .steps { grid-template-columns: 1fr; }
+  .team-grid { grid-template-columns: 1fr; }
+  .pmi-list div { grid-template-columns: 1fr; gap: 4px; }
 
   .case-card { padding: 34px 26px; }
 
@@ -688,6 +758,7 @@ footer {
       <li><a href="#services" class="mono">Soluciones</a></li>
       <li><a href="#casos" class="mono">Casos</a></li>
       <li><a href="#proceso" class="mono">Proceso</a></li>
+      <li><a href="#equipo" class="mono">Equipo</a></li>
       <li><a href="#contacto" class="nav-pill">Hablemos</a></li>
     </ul>
   </div>
@@ -869,6 +940,94 @@ footer {
         <div class="step-mark"><span class="step-dot"></span><span class="mono">Continuo</span></div>
         <p class="step-title">Optimización</p>
         <p class="card-body">Seguimos las métricas, ajustamos los agentes y formamos a tu equipo, para que dependas de nosotros cada vez menos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 05 EQUIPO ──────────────────────────────────── -->
+<section id="equipo" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="lead">
+        <p class="mono eyebrow reveal">05 / Quién hace el trabajo</p>
+        <h2 class="reveal d1">Lo que te montamos ya lo usamos nosotros.</h2>
+      </div>
+      <p class="section-note reveal d2">qaizn no vende agentes desde fuera: funciona con un equipo de agentes. Uno coordina, otro dirige el proyecto bajo el estándar del PMI y cada especialista ejecuta lo suyo. Es la misma arquitectura que desplegamos en tu empresa, probada cada día en la nuestra.</p>
+    </div>
+
+    <div class="atlas-band reveal">
+      <div>
+        <p class="mono eyebrow">Orquestador</p>
+        <p class="atlas-name">Atlas</p>
+      </div>
+      <p class="card-body">Punto único de contacto. Atlas no ejecuta: entiende qué hace falta, decide quién debe hacerlo y se lo pasa. Si para un encargo no existe el perfil adecuado, dispara la incorporación de uno nuevo. Es el patrón que evita el error clásico de la IA en empresa &mdash; un modelo generalista intentando hacerlo todo regular.</p>
+    </div>
+
+    <div class="team-grid reveal">
+      <div class="team-card">
+        <p class="team-name">Orion</p>
+        <p class="mono team-role">Dirección de proyecto</p>
+        <p class="card-body">Gestiona bajo PMBOK 7: alcance, hitos, registro de riesgos, control de cambios y cierre con lecciones aprendidas.</p>
+      </div>
+      <div class="team-card">
+        <p class="team-name">Kepler</p>
+        <p class="mono team-role">Arquitectura</p>
+        <p class="card-body">Traduce lo que quieres conseguir en un plano ejecutable: modelo de datos, API e integraciones con lo que ya tienes.</p>
+      </div>
+      <div class="team-card">
+        <p class="team-name">Vector</p>
+        <p class="mono team-role">RAG y modelos</p>
+        <p class="card-body">Conecta los modelos a tu documentación real, con bases vectoriales, para que respondan con tus datos y no de memoria.</p>
+      </div>
+      <div class="team-card">
+        <p class="team-name">Nex</p>
+        <p class="mono team-role">Investigación</p>
+        <p class="card-body">Estudia cómo trabaja de verdad un profesional de la especialidad antes de que diseñemos el agente que la cubre.</p>
+      </div>
+      <div class="team-card">
+        <p class="team-name">Vera</p>
+        <p class="mono team-role">Voz del cliente</p>
+        <p class="card-body">Revisa cada entregable antes de que salga, desde tu lado de la mesa: si no se entiende o no mueve a actuar, no sale.</p>
+      </div>
+      <div class="team-card">
+        <p class="team-name">Pixel</p>
+        <p class="mono team-role">Producción documental</p>
+        <p class="card-body">Convierte el trabajo en informes, memorias y presentaciones con el acabado de una consultora grande.</p>
+      </div>
+      <div class="team-card">
+        <p class="team-name">Sonar</p>
+        <p class="mono team-role">Cadencia</p>
+        <p class="card-body">Vigila el tiempo entre lo que se envía y la decisión que falta. Nada se queda muerto en una bandeja sin que alguien lo cierre.</p>
+      </div>
+      <div class="team-card">
+        <p class="team-name">Wick</p>
+        <p class="mono team-role">Contenido</p>
+        <p class="card-body">Convierte los episodios reales de cada proyecto en material publicable, siempre anonimizado.</p>
+      </div>
+    </div>
+
+    <p class="cases-note reveal d1">Hay más perfiles dormidos &mdash; modelado de procesos BPMN, transformación digital &mdash; que solo se activan cuando entra un proyecto que los necesita. El equipo crece con el trabajo, no al revés.</p>
+
+    <div class="pmi-block reveal d2">
+      <h3>Un proyecto, no un experimento.</h3>
+      <div class="pmi-list">
+        <div>
+          <p class="mono team-role">Charter</p>
+          <p class="card-body">Antes de tocar nada: objetivo, alcance, entregables, hitos y riesgos por escrito.</p>
+        </div>
+        <div>
+          <p class="mono team-role">Estado vivo</p>
+          <p class="card-body">Qué falta exactamente, de quién depende y para qué fecha. Sin esos tres campos, un proyecto no se considera al día.</p>
+        </div>
+        <div>
+          <p class="mono team-role">Registro</p>
+          <p class="card-body">Cada decisión queda escrita y fechada, para que dentro de seis meses se sepa por qué se hizo así.</p>
+        </div>
+        <div>
+          <p class="mono team-role">Cierre</p>
+          <p class="card-body">Se cierra con lecciones aprendidas, no dejando de contestar correos.</p>
+        </div>
       </div>
     </div>
   </div>
