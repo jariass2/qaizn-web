@@ -544,6 +544,18 @@ footer {
   flex-wrap: wrap;
 }
 
+.footer-social,
+.footer-legal { color: var(--ink-60); margin: 0; }
+
+.footer-social {
+  display: flex;
+  gap: 22px;
+  flex-wrap: wrap;
+}
+
+.footer-social a { text-decoration: none; }
+.footer-social a:hover { color: var(--ink); }
+
 .footer-mark {
   width: 22px; height: 22px;
   border: 4px solid var(--ink);
@@ -1104,11 +1116,12 @@ footer {
       <span class="footer-mark"></span>
       <span class="brand-name">qaizn</span>
     </div>
-    <p class="mono" style="color:var(--ink-60);">
-      <a href="mailto:jordi@qaizn.com">jordi@qaizn.com</a> &middot; © 2026 qaizn
+    <p class="mono footer-social">
+      <a href="https://www.linkedin.com/in/jordiariassantaella" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:jordi@qaizn.com">jordi@qaizn.com</a>
     </p>
-    <p class="mono footer-legal" style="color:var(--ink-60);">
-      <a href="/privacidad.html">Política de privacidad</a> &middot; <a href="/aviso-legal.html">Aviso legal</a>
+    <p class="mono footer-legal">
+      <a href="/privacidad.html">Política de privacidad</a> &middot; <a href="/aviso-legal.html">Aviso legal</a> &middot; © 2026 qaizn
     </p>
   </div>
 </footer>
