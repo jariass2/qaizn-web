@@ -100,7 +100,7 @@ el repo. Si alguna vez recibes spam por ella, se regenera desde Web3Forms y se
 sustituye esa línea.
 
 Si el envío fallara, el visitante ve "No hemos podido enviarlo" con un enlace
-a `hola@qaizn.com`. Nadie se queda sin poder contactar.
+a `jordi@qaizn.com`. Nadie se queda sin poder contactar.
 
 ### Qué hace el formulario
 
