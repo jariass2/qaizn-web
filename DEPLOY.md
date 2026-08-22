@@ -86,11 +86,14 @@ Y abre `http://localhost:8000/`.
 
 - `index.html` (Rams) carga las tipografías desde Google Fonts.
   `clasico.html` las lleva embebidas en su propio bundle.
-- Archivos históricos que también están en la raíz y por tanto son públicos:
-  `index_old.html`, `qaizn2.html`, `hero-neobrutalist-backup.html`,
-  `index_bundled_backup.html`. No están enlazados desde ningún sitio, pero
-  cualquiera que sepa el nombre puede abrirlos. Si eso molesta, hay que
-  borrarlos del repo.
+- Las versiones históricas (`index_old.html`, `qaizn2.html`,
+  `hero-neobrutalist-backup.html`) se borraron del repo el 22 de agosto de
+  2026. Seguían siendo públicas por nombre de archivo y enseñaban cifras
+  (250%, 150+, 96%) que ya no se sostienen. Están en el historial de git si
+  hacen falta.
+- `clasico.html` sigue publicada porque es el plan de vuelta atrás descrito
+  arriba. **Lleva esas mismas cifras.** Si se decide dejar de usarla como
+  respaldo, hay que borrarla también.
 
 ## Formulario de contacto
 
